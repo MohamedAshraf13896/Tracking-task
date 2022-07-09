@@ -105,7 +105,7 @@ export class EditTaskComponent implements OnInit {
         );
           swalWithBootstrapButtons.fire(
             'Edited!',
-            'Your Task has been Edited.',
+            'Your task has been edited.',
             'success'
           )
           if(result.isConfirmed) {
@@ -120,7 +120,7 @@ export class EditTaskComponent implements OnInit {
           this.nav.navigate([`Edittask/${this.task_id}`]);
           swalWithBootstrapButtons.fire(
             'Cancelled',
-            'Your Task Data Not Edited :)',
+            'Your task data not edited :)',
             'error'
           )
         }
@@ -128,41 +128,14 @@ export class EditTaskComponent implements OnInit {
     }
     }
   clearData() {
-      const swalWithBootstrapButtons = Swal.mixin({
-        customClass: {
-          confirmButton: 'btn btn-success',
-          cancelButton: 'btn btn-danger m-3'
-        },
-        buttonsStyling: false
-      })
-      swalWithBootstrapButtons.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, Reset it!',
-        cancelButtonText: 'No, cancel!',
-        reverseButtons: true
-      }).then((result) => {
-        if (result.isConfirmed) {
-          this.newDate=""
-          this.newDetails=""
-          this.newtitle=""
-          swalWithBootstrapButtons.fire(
-            'Reset!',
-            'Your Task Data has been Reset.',
-            'success'
-          )
-        } else if (
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
-          this.nav.navigate([`Edittask/${this.task_id}`]);
-          swalWithBootstrapButtons.fire(
-            'Cancelled',
-            'Your Task Data is safe :)',
-            'error'
-          )
-        }
-      })  
+    Swal.fire(
+      'Cancl ?',
+      'You will go back to tasks page !!',
+      'question'
+    ).then((res)=> {
+      if(res.isConfirmed) {
+        this.nav.navigate(['/Tasks'])
+      }
+    })
   }
 }

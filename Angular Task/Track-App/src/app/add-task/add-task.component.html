@@ -1,27 +1,29 @@
 <form [formGroup]="TrackForm" (ngSubmit)="addNew(title.value, description.value, date.value , proj_id ,assignee_id)" class="mt-5">
     <div class="form-group">
-      <label for="exampleInputTitle">Title</label>
+      <label style="color: #5777ba;" for="exampleInputTitle">Title</label>
       <input [ngClass]="{error :submited && TrackForm.controls['title'].errors}" formControlName = "title" #title type="text" class="form-control" id="exampleInputTitle" aria-describedby="titleHelp" placeholder="Enter Title">
       <div style="color: red; text-align: center;" class="mt-2" *ngIf="submited && TrackForm.controls['title'].errors">This field is required , Max length 10 char and Min length 4 char</div>
     </div>
-    <div class="form-group mt-2">
-      <label  for="exampleInputDetails">Details</label>
+    <div class="form-group mt-4">
+      <label style="color: #5777ba;"  for="exampleInputDetails">Details</label>
       <input [ngClass]="{error :submited && TrackForm.controls['details'].errors}"  formControlName = "details" #description type="text" class="form-control" id="exampleInputDetails" placeholder="Enter Details">
       <div style="color: red; text-align: center;" class="mt-2" *ngIf="submited && TrackForm.controls['details'].errors">This field is required , Max length 10 char and Min length 4 char</div>
     </div>
-    <div class="form-group mt-2">
-        <label for="exampleInputDate">Date</label>
+    <div class="form-group mt-4">
+        <label style="color: #5777ba;" for="exampleInputDate">Date</label>
         <input [ngClass]="{error :submited && TrackForm.controls['date'].errors}" formControlName = "date" #date type="date" class="form-control" id="exampleInputDate" placeholder="Enter Date">
         <div style="color: red; text-align: center;" class="mt-2" *ngIf="submited && TrackForm.controls['date'].errors">This field is Required</div>
 
       </div>
-      <div *ngIf="Assignees">
-        <select #assigneeName class="form-select mt-4" aria-label="Default select example" (change)="SelectAssig_ID($event)">
+      <div *ngIf="Assignees" class="mt-4">
+        <label style="color: #5777ba;" for="exampleInputDate">Assignee Name</label>
+        <select #assigneeName class="form-select mt-1" aria-label="Default select example" (change)="SelectAssig_ID($event)">
             <option *ngFor="let a of Assignees" value={{a.id}}>{{a.name}}</option>
           </select>
       </div>
-      <div *ngIf="Projects">
-          <select #projectName class="form-select mt-4" aria-label="Default select example" (change)="SelectProj_ID($event)">
+      <div *ngIf="Projects" class="mt-4">
+        <label style="color: #5777ba;" for="exampleInputDate">Project Name</label>
+          <select #projectName class="form-select m-1" aria-label="Default select example" (change)="SelectProj_ID($event)">
             <option *ngFor="let p of Projects" value={{p.id}}>{{p.name}}</option>
           </select>
       </div>
@@ -37,3 +39,4 @@
         </div>
     </section>
   </form>
+<app-footer></app-footer>

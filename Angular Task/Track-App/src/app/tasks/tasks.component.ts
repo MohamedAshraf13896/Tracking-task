@@ -20,7 +20,8 @@ export class TasksComponent implements OnInit {
     this.mySub = this.taskservice.GetAllTasks().subscribe(
       (data)=>{this.Tasks = data},
       
-      (err)=> {if(err.status  == 401) {
+      (err)=> {
+        if(err.status  == 401) {
         this.nav.navigate(['/login'])
 
       }}

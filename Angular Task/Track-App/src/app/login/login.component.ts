@@ -11,11 +11,11 @@ import { LoginService } from '../services/login.service';
 })
 export class LoginComponent implements OnInit {
   nav: any;
+  router: any;
 
   constructor(private loginservice:LoginService) { }
   LoginForm!: FormGroup;
   submited:boolean = false;
-  Error:any
   Token:any
   ngOnInit(): void {
 
@@ -32,26 +32,33 @@ export class LoginComponent implements OnInit {
       let User = { userName, password};
       if(userName && password){
        this.loginservice.Login(User).subscribe(
-        (data)=>{this.Token =data
+        (data)=>{
+          
+          this.Token =data
           localStorage.setItem("User",this.Token.token)
           Swal.fire({
             icon: 'success',
             title: 'Welcome...',
             text: 'Valid User :)',
-            footer: '<a href="">Congratulations</a>'
-          }).then((result)=> {
-            if(result.isConfirmed)  {
-              this.nav.navigate[`/Tasks`].then(() => {
-                window.location.reload();
-              });
-            }
+            footer: '<a href="">Go to permission of this user</a>',
+            showConfirmButton:false
           })
+          let currentUrl = this.router.url;
+          this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+              this.router.navigate([currentUrl]);
+          });       
         },
-        (error)=>{this.Error = error.error}
+        (error)=>{Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Invalid User!',
+          footer: '<a href="">Why do I have this issue?</a>'
+        })}
        );
       }
-
     }
   }
 
 }
+
+

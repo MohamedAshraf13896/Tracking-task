@@ -8,14 +8,14 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a routerLink="Home" class="nav-link scrollto ">Home</a></li>
-          <div *ngIf="token; else loggedOut">
-          <li><a routerLink="/Home" style="cursor: pointer;" (click)="removeuser()" class="nav-link scrollto">Logout</a></li>
-          </div>
           <ng-template #loggedOut>
           <li><a routerLink="login" class="nav-link scrollto">Login</a></li>            
           </ng-template>
           <li><a routerLink="Tasks" class="nav-link scrollto">Tasks</a></li>
           <li><a routerLink="Addtask" class="nav-link scrollto">Add New Task</a></li>
+          <div *ngIf="token; else loggedOut">
+            <li><a routerLink="/Home" style="cursor: pointer;" (click)="removeuser()" class="nav-link scrollto">Logout</a></li>
+            </div>
           <li><a style="text-decoration: none;" class="getstarted scrollto">Get Started</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
