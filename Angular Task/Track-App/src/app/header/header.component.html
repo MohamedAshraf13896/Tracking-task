@@ -9,7 +9,7 @@
         <ul>
           <li><a routerLink="Home" class="nav-link scrollto ">Home</a></li>
           <div *ngIf="token; else loggedOut">
-          <li><a (click)="removeuser()" class="nav-link scrollto">Logout</a></li>
+          <li><a routerLink="/Home" style="cursor: pointer;" (click)="removeuser()" class="nav-link scrollto">Logout</a></li>
           </div>
           <ng-template #loggedOut>
           <li><a routerLink="login" class="nav-link scrollto">Login</a></li>            

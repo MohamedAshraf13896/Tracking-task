@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   token:any
+  nav: any;
   constructor() { 
     this.token = localStorage.getItem("User")
   }

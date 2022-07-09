@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { LoginService } from '../services/login.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { LoginService } from '../services/login.service';
   ]
 })
 export class LoginComponent implements OnInit {
+  nav: any;
 
   constructor(private loginservice:LoginService) { }
   LoginForm!: FormGroup;
@@ -32,10 +34,23 @@ export class LoginComponent implements OnInit {
        this.loginservice.Login(User).subscribe(
         (data)=>{this.Token =data
           localStorage.setItem("User",this.Token.token)
+          Swal.fire({
+            icon: 'success',
+            title: 'Welcome...',
+            text: 'Valid User :)',
+            footer: '<a href="">Congratulations</a>'
+          }).then((result)=> {
+            if(result.isConfirmed)  {
+              this.nav.navigate[`/Tasks`].then(() => {
+                window.location.reload();
+              });
+            }
+          })
         },
         (error)=>{this.Error = error.error}
        );
       }
+
     }
   }
 

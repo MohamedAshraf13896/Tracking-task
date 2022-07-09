@@ -8,7 +8,9 @@
       <label  for="exampleInputDetails">Password</label>
       <input  formControlName = "password" #Pass type="password" class="form-control" id="exampleInputDetails" placeholder="Enter Your Password">
       <div style="color: red; text-align: center;" class="mt-2" *ngIf="submited && LoginForm.controls['password'].errors">This field is required , Max length 20 char and Min length 7 char</div>
-      <div style="color: red; text-align: center;" *ngIf="Error">{{Error}}</div>
+      <div  *ngIf="Error">
+        <div style="color: red; text-align: center;" >{{Error}}</div>
+      </div>
     </div>
       <section>
         <div class="container-fluid ">
