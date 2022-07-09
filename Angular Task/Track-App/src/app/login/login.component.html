@@ -1,0 +1,24 @@
+<form [formGroup]="LoginForm" (ngSubmit)="Login(user.value, Pass.value)"  class="mt-5">
+    <div class="form-group">
+      <label for="exampleInputTitle">User Name</label>
+      <input  formControlName = "userName" #user type="text" class="form-control" id="exampleInputTitle" aria-describedby="titleHelp" placeholder="Enter Your User Name">
+      <div style="color: red; text-align: center;" class="mt-2" *ngIf="submited && LoginForm.controls['userName'].errors">This field is required , Max length 10 char and Min length 3 char</div>
+    </div>
+    <div class="form-group mt-4">
+      <label  for="exampleInputDetails">Password</label>
+      <input  formControlName = "password" #Pass type="password" class="form-control" id="exampleInputDetails" placeholder="Enter Your Password">
+      <div style="color: red; text-align: center;" class="mt-2" *ngIf="submited && LoginForm.controls['password'].errors">This field is required , Max length 20 char and Min length 7 char</div>
+      <div style="color: red; text-align: center;" *ngIf="Error">{{Error}}</div>
+    </div>
+      <section>
+        <div class="container-fluid ">
+            <div class="row justify-content-center">
+                <div class="col-md-2 px-0">
+                    <div class="container container-half container-half-md-left h-100">
+                        <button type="submit" class="btn btn-primary mt-4 container">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+  </form>
